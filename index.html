@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>APEL ASN — Dinas Transmigrasi dan Tenaga Kerja</title>
+<link rel="icon" type="image/png" href="assets/logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="toast-box" id="toastBox"></div>
+<canvas id="camCanvas" style="display:none"></canvas>
+<!-- LOGIN -->
+<div id="page-login">
+<!-- KIRI: slider -->
+<section class="lg-left" aria-label="Informasi sistem">
+<div class="lg-brandbar">
+<img class="lg-logo" alt="Logo Kabupaten Muna Barat">
+<span class="sep"></span>
+<div><b>Dinas Transmigrasi<br>dan Tenaga Kerja</b></div>
+</div>
+<div class="lg-slider" id="lgSlider" tabindex="0" aria-roledescription="carousel">
+<div class="lg-stage">
+<div class="lg-slide on" aria-hidden="false">
+<svg class="lg-art" viewBox="0 0 420 300" role="img" aria-label="Daftar hadir apel pagi">
+<ellipse cx="210" cy="278" rx="140" ry="10" fill="#0C1A35" opacity=".2"/>
+<rect x="60" y="34" width="300" height="226" rx="22" fill="#fff"/>
+<path d="M60 56a22 22 0 0 1 22-22h256a22 22 0 0 1 22 22v30H60z" fill="#F0AA12"/>
+<text x="84" y="68" font-family="Sora,sans-serif" font-size="15" font-weight="700" fill="#0C1A35">Apel Pagi · 07.30</text>
+<circle cx="130" cy="170" r="42" fill="#EEF3FB" stroke="#2B3E8F" stroke-width="5"/>
+<path d="M130 170v-24M130 170l17 11" stroke="#2B3E8F" stroke-width="5" stroke-linecap="round" fill="none"/>
+<circle cx="130" cy="170" r="4.5" fill="#F0AA12"/>
+<g fill="#10B981"><circle cx="212" cy="120" r="11"/><circle cx="212" cy="160" r="11"/><circle cx="212" cy="200" r="11"/></g>
+<g fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M207 120l4 4 7-8"/><path d="M207 160l4 4 7-8"/><path d="M207 200l4 4 7-8"/></g>
+<g fill="#D4E0F5"><rect x="234" y="113" width="96" height="8" rx="4"/><rect x="234" y="153" width="80" height="8" rx="4"/><rect x="234" y="193" width="92" height="8" rx="4"/></g>
+<g fill="#EEF3FB"><rect x="234" y="125" width="56" height="6" rx="3"/><rect x="234" y="165" width="64" height="6" rx="3"/><rect x="234" y="205" width="48" height="6" rx="3"/></g>
+</svg>
+<h3>Apel Pagi &amp; Sore Terpantau</h3>
+<p>Kehadiran apel ASN tercatat tepat waktu, rapi, dan dapat dipantau kapan saja.</p>
+</div>
+<div class="lg-slide" aria-hidden="true">
+<svg class="lg-art" viewBox="0 0 420 300" role="img" aria-label="Absen dengan foto dan lokasi">
+<ellipse cx="210" cy="284" rx="100" ry="8" fill="#0C1A35" opacity=".2"/>
+<circle cx="326" cy="118" r="44" fill="none" stroke="#fff" stroke-opacity=".25" stroke-width="2"/>
+<circle cx="326" cy="118" r="28" fill="none" stroke="#fff" stroke-opacity=".4" stroke-width="2"/>
+<rect x="140" y="16" width="140" height="262" rx="26" fill="#0C1A35"/>
+<rect x="150" y="28" width="120" height="238" rx="18" fill="#fff"/>
+<circle cx="210" cy="92" r="38" fill="#D4E0F5"/>
+<circle cx="210" cy="84" r="14" fill="#6A8CB8"/>
+<path d="M184 116c4-16 15-22 26-22s22 6 26 22a38 38 0 0 1-52 0z" fill="#6A8CB8"/>
+<g fill="none" stroke="#2B3E8F" stroke-width="3" stroke-linecap="round"><path d="M166 66v-10h10M254 66v-10h-10M166 118v10h10M254 118v10h-10"/></g>
+<rect x="164" y="150" width="92" height="36" rx="10" fill="#EEF3FB"/>
+<path d="M182 160a7 7 0 0 1 14 0c0 6-7 13-7 13s-7-7-7-13z" fill="#EF4444"/><circle cx="189" cy="160" r="2.4" fill="#fff"/>
+<rect x="202" y="157" width="44" height="6" rx="3" fill="#A8BFDF"/><rect x="202" y="168" width="30" height="6" rx="3" fill="#D4E0F5"/>
+<rect x="164" y="204" width="92" height="38" rx="11" fill="#2B3E8F"/>
+<text x="210" y="228" text-anchor="middle" font-family="Sora,sans-serif" font-size="14" font-weight="700" fill="#fff">Absen</text>
+<path d="M326 96a15 15 0 0 1 15 15c0 12-15 28-15 28s-15-16-15-28a15 15 0 0 1 15-15z" fill="#F0AA12"/><circle cx="326" cy="111" r="5.5" fill="#fff"/>
+<circle cx="88" cy="176" r="30" fill="#fff"/>
+<rect x="72" y="166" width="32" height="22" rx="5" fill="#2B3E8F"/><path d="M80 166l3-5h10l3 5z" fill="#2B3E8F"/><circle cx="88" cy="177" r="6" fill="#fff"/><circle cx="88" cy="177" r="3" fill="#F0AA12"/>
+</svg>
+<h3>Absen dengan Foto &amp; Lokasi</h3>
+<p>Presensi mandiri lewat ponsel, dilengkapi swafoto dan titik lokasi untuk validasi kehadiran.</p>
+</div>
+<div class="lg-slide" aria-hidden="true">
+<svg class="lg-art" viewBox="0 0 420 300" role="img" aria-label="Rekap dan laporan otomatis">
+<ellipse cx="210" cy="282" rx="150" ry="9" fill="#0C1A35" opacity=".2"/>
+<rect x="34" y="40" width="226" height="190" rx="20" fill="#fff"/>
+<text x="56" y="70" font-family="Sora,sans-serif" font-size="13" font-weight="700" fill="#0C1A35">Rekap Kehadiran</text>
+<g fill="#D4E0F5"><rect x="62" y="150" width="26" height="54" rx="6"/><rect x="104" y="124" width="26" height="80" rx="6"/><rect x="146" y="102" width="26" height="102" rx="6"/></g>
+<rect x="188" y="88" width="26" height="116" rx="6" fill="#2B3E8F"/>
+<path d="M50 206h192" stroke="#A8BFDF" stroke-width="2" stroke-linecap="round"/>
+<rect x="228" y="78" width="136" height="186" rx="14" fill="#EEF3FB" stroke="#fff" stroke-width="4"/>
+<rect x="244" y="96" width="60" height="9" rx="4.5" fill="#2B3E8F"/>
+<g fill="#A8BFDF"><rect x="244" y="120" width="104" height="7" rx="3.5"/><rect x="244" y="138" width="88" height="7" rx="3.5"/><rect x="244" y="156" width="100" height="7" rx="3.5"/><rect x="244" y="174" width="72" height="7" rx="3.5"/></g>
+<circle cx="326" cy="224" r="22" fill="#F0AA12"/>
+<text x="326" y="230" text-anchor="middle" font-family="Sora,sans-serif" font-size="15" font-weight="800" fill="#0C1A35">PDF</text>
+</svg>
+<h3>Rekap &amp; Laporan Otomatis</h3>
+<p>Rekapitulasi kehadiran dan laporan siap cetak tersusun otomatis tanpa input berulang.</p>
+</div>
+<div class="lg-slide" aria-hidden="true">
+<svg class="lg-art" viewBox="0 0 420 300" role="img" aria-label="Akses aman sesuai peran">
+<ellipse cx="210" cy="284" rx="100" ry="8" fill="#0C1A35" opacity=".2"/>
+<path d="M210 22l94 34v82c0 60-40 102-94 126-54-24-94-66-94-126V56z" fill="#fff"/>
+<path d="M210 44l74 27v67c0 47-30 80-74 100-44-20-74-53-74-100V71z" fill="#EEF3FB"/>
+<path d="M210 44v194c44-20 74-53 74-100V71z" fill="#D4E0F5"/>
+<path d="M176 140l24 24 44-50" fill="none" stroke="#2B3E8F" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="34" y="196" width="92" height="32" rx="16" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-opacity=".5"/>
+<text x="80" y="217" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#fff">ADMIN</text>
+<rect x="296" y="120" width="80" height="32" rx="16" fill="#F0AA12"/>
+<text x="336" y="141" text-anchor="middle" font-family="Sora,sans-serif" font-size="12" font-weight="700" fill="#0C1A35">ASN</text>
+</svg>
+<h3>Akses Aman Sesuai Peran</h3>
+<p>Setiap pengguna masuk dengan akun masing-masing dan hanya melihat menu sesuai perannya.</p>
+</div>
+</div>
+<div class="lg-dots" role="tablist" aria-label="Pilih slide">
+<button type="button" class="lg-dot on" role="tab" aria-selected="true" aria-label="Slide 1"></button>
+<button type="button" class="lg-dot" role="tab" aria-selected="false" aria-label="Slide 2"></button>
+<button type="button" class="lg-dot" role="tab" aria-selected="false" aria-label="Slide 3"></button>
+<button type="button" class="lg-dot" role="tab" aria-selected="false" aria-label="Slide 4"></button>
+</div>
+</div>
+</section>
+<!-- KANAN: form login -->
+<section class="lg-right">
+<div class="lg-form">
+<img class="lg-logo lg-mlogo" alt="Logo Kabupaten Muna Barat">
+<div class="lg-wordmark">
+<svg viewBox="0 0 48 48" aria-hidden="true"><rect width="48" height="48" rx="13" fill="#2B3E8F"/><circle cx="24" cy="25" r="12" fill="none" stroke="#fff" stroke-width="3"/><path d="M24 25v-6M24 25l5 3" stroke="#fff" stroke-width="3" stroke-linecap="round"/><path d="M17 9.5l4 3.5M31 9.5l-4 3.5" stroke="#F0AA12" stroke-width="3" stroke-linecap="round"/></svg>
+<div><b>APEL ASN</b><small>Sistem Presensi Apel</small></div>
+</div>
+<h2>Masuk Akun</h2>
+<div class="lg-desc">Sistem Presensi Apel — Kab. Muna Barat</div>
+<div class="err-box" id="lgErr"></div>
+<div class="loading" id="lgLoad" style="display:none;padding:6px 0"><div class="spin"></div>Memverifikasi...</div>
+<div class="fg"><label class="fl" for="lgU">Username</label>
+<div class="lg-field"><input type="text" id="lgU" class="fc" placeholder="Masukkan username / NIP" autocomplete="username" autocapitalize="none" spellcheck="false">
+<span class="lg-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg></span></div></div>
+<div class="fg"><label class="fl" for="lgP">Password</label>
+<div class="lg-field"><input type="password" id="lgP" class="fc" placeholder="Masukkan password" autocomplete="current-password">
+<button type="button" class="lg-eye" id="lgPToggle" onclick="toggleLoginPw()" aria-label="Tampilkan/sembunyikan sandi" aria-pressed="false">
+<svg class="i-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"/><circle cx="12" cy="12" r="3"/></svg>
+<svg class="i-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.9 17.9A10.9 10.9 0 0 1 12 19C5 19 1 12 1 12a18.5 18.5 0 0 1 5.1-5.9M9.9 5.2A10.9 10.9 0 0 1 12 5c7 0 11 7 11 7a18.6 18.6 0 0 1-2.2 3.2M14.1 14.1a3 3 0 1 1-4.2-4.2M1 1l22 22"/></svg>
+</button></div></div>
+<button class="btn btn-gold btn-full btn-lg lg-btn" onclick="doLogin()">Login</button>
+<div class="lg-foot"><span>Created By JUSWAY, S.TP</span><span>v7.1</span></div>
+</div>
+</section>
+</div>
+<!-- APP SHELL -->
+<div id="app">
+<div class="topbar">
+<button class="btn-hamburger" onclick="toggleMobDrawer()" id="btnHamburger">☰</button>
+<div class="topbar-brand">
+<div class="brand-icon"><img src="assets/logo.png" style="width:26px;height:26px;object-fit:contain;" alt="Logo Muna Barat"></div>
+<div><div class="brand-name">APEL ASN</div><div class="brand-sub">Presensi v7.1</div></div>
+</div>
+<div class="topbar-center">
+<div class="clock-pill"><div class="clock-dot"></div><span id="tbClock">--:--:--</span></div>
+<div class="day-pill" id="tbDay">—</div>
+</div>
+<div class="topbar-right">
+<div class="user-pill" id="tbUser" style="display:none">
+<div class="user-ava" id="tbAva">A</div>
+<div><div class="user-name" id="tbNama">Admin</div><div class="user-role" id="tbRole">—</div></div>
+</div>
+<button class="btn-logout" onclick="doLogout()" id="btnLogout" style="display:none">Keluar</button>
+</div>
+</div>
+<div class="sidebar">
+<div class="admin-only-block">
+<div class="sidebar-lbl">Dashboard</div>
+<button class="nav-item" data-panel="dashboard"><span class="nav-icon">📊</span> Grafik &amp; Profil</button>
+<div class="sidebar-sep"></div>
+<div class="sidebar-lbl">Data Pegawai</div>
+<button class="nav-item" data-toggle="sub-peg"><span class="nav-icon">👥</span> Menu Pegawai <span class="nav-arrow">›</span></button>
+<div class="sub-nav" id="sub-peg">
+<button class="sub-item" data-panel="input-pegawai"><span class="sub-dot"></span>Input Pegawai</button>
+<button class="sub-item" data-panel="rekap-pegawai"><span class="sub-dot"></span>Rekapitulasi Pegawai</button>
+</div>
+<div class="sidebar-sep"></div>
+</div>
+<div class="sidebar-lbl">Absensi Saya</div>
+<button class="nav-item" data-panel="absenpagi">
+<span>&#9728;&#65039;</span><span>Absen Pagi</span>
+</button>
+<button class="nav-item" data-panel="absensore">
+<span>&#127749;</span><span>Absen Sore</span>
+</button>
+<button class="nav-item" data-panel="riwayat-pagi">
+<span>&#128209;</span><span>Riwayat &amp; Cetak Pagi</span>
+</button>
+<button class="nav-item" data-panel="riwayat-sore">
+<span>&#128209;</span><span>Riwayat &amp; Cetak Sore</span>
+</button>
+<div class="admin-only-block">
+<div class="sidebar-lbl">Input Apel</div>
+<button class="nav-item" data-toggle="sub-apel"><span class="nav-icon">📋</span> Menu Apel <span class="nav-arrow">›</span></button>
+<div class="sub-nav" id="sub-apel">
+<button class="sub-item" data-panel="apel-pagi"><span class="sub-dot"></span>Apel Pagi</button>
+<button class="sub-item" data-panel="apel-sore"><span class="sub-dot"></span>Apel Sore</button>
+</div>
+<div class="sidebar-sep"></div>
+<div class="sidebar-lbl">Monitoring</div>
+<button class="nav-item" data-toggle="sub-monitor"><span class="nav-icon">📡</span> Monitoring Riwayat <span class="nav-arrow">›</span></button>
+<div class="sub-nav" id="sub-monitor">
+<button class="sub-item" data-panel="monitoring-harian"><span class="sub-dot"></span>Monitoring Harian</button>
+<button class="sub-item" data-panel="monitoring-bulanan"><span class="sub-dot"></span>Rekapitulasi Bulanan</button>
+<button class="sub-item" data-panel="rekap-foto"><span class="sub-dot"></span>Rekap Foto Dokumentasi</button>
+</div>
+<div class="sidebar-sep"></div>
+<div class="sidebar-lbl">Laporan &amp; Cetak</div>
+<button class="nav-item" data-toggle="sub-lap"><span class="nav-icon">📄</span> Cetak Laporan <span class="nav-arrow">›</span></button>
+<div class="sub-nav" id="sub-lap">
+<button class="sub-item" data-panel="cetak-pagi"><span class="sub-dot"></span>Laporan Apel Pagi</button>
+<button class="sub-item" data-panel="cetak-sore"><span class="sub-dot"></span>Laporan Apel Sore</button>
+<button class="sub-item" data-panel="cetak-lengkap"><span class="sub-dot"></span>Laporan Lengkap</button>
+</div>
+<div class="sidebar-sep"></div>
+<div class="sidebar-lbl">Sistem</div>
+<button class="nav-item" data-panel="pengaturan"><span class="nav-icon">⚙️</span> Pengaturan</button>
+</div>
+</div>
+<div class="main">
+<div class="inner">
+<!-- PANEL: ABSEN PAGI (terpisah dari Absen Sore) -->
+<div class="panel" id="panel-absenpagi">
+<div style="max-width:720px;margin:0 auto;">
+<div class="am-hero">
+<div class="am-hero-icon">&#9728;&#65039;</div>
+<h2 class="am-hero-title">Absen Pagi</h2>
+<p class="am-hero-sub">Absen Apel &amp; Hadir hanya bisa dilakukan di lokasi apel/kantor. Absen Cuti / Dinas Luar / Sakit / Izin / WFH bisa dilakukan di mana saja.</p>
+</div>
+<div class="am-status-row">
+<div id="am-waktu-box-pagi" class="am-status-pill neutral">
+<span class="am-status-ic">&#128337;</span>
+<div class="am-status-txt"><span class="am-status-lbl">Waktu</span><span id="am-waktu-text-pagi">Memuat jadwal...</span></div>
+</div>
+<div id="am-gps-box-pagi" class="am-status-pill neutral">
+<span id="am-gps-icon-pagi" class="am-status-ic">&#128205;</span>
+<div class="am-status-txt"><span class="am-status-lbl">Lokasi</span><span id="am-gps-text-pagi">Mengambil lokasi GPS...</span></div>
+<button id="am-gps-retrybtn-pagi" onclick="amAmbilGPS()" style="display:none;margin-left:auto;padding:6px 10px;border-radius:8px;border:none;background:#F0AA12;color:#fff;font-weight:700;cursor:pointer;font-size:10.5px;">&#128260; Ulang</button>
+<button id="am-gps-openbtn-pagi" onclick="amBukaTabBaru()" style="display:none;margin-left:6px;padding:6px 10px;border-radius:8px;border:none;background:#F0AA12;color:#fff;font-weight:700;cursor:pointer;font-size:10.5px;">Tab Baru</button>
+</div>
+</div>
+<div id="am-jarak-box-pagi" style="display:none;padding:12px 14px;border-radius:var(--r-lg);border:1px solid rgba(240,170,18,.35);margin-bottom:16px;font-size:13px;color:var(--ink);">
+<div id="am-jarak-text-pagi" style="display:flex;align-items:center;gap:8px;font-weight:600;"></div>
+<div id="am-jarak-toolbar-pagi" style="display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:8px;">
+<button type="button" id="am-jarak-size-btn-pagi" onclick="amToggleJarakMapSize('pagi')" style="padding:5px 9px;border-radius:8px;border:1px solid var(--g200);background:#fff;color:var(--ink3);font-weight:700;cursor:pointer;font-size:10.5px;">&#8599; Perbesar Peta</button>
+<button type="button" id="am-jarak-hide-btn-pagi" onclick="amToggleJarakMapVisible('pagi')" style="padding:5px 9px;border-radius:8px;border:1px solid var(--g200);background:#fff;color:var(--ink3);font-weight:700;cursor:pointer;font-size:10.5px;">&#128065; Sembunyikan Peta</button>
+</div>
+<div id="am-jarak-map-pagi" class="am-jarak-map" style="width:100%;height:200px;border-radius:var(--r);margin-top:10px;border:1px solid var(--g200);display:none;"></div>
+</div>
+<div class="am-card" style="background:linear-gradient(145deg,#FFFDF5,var(--gold-lt));border:1px solid rgba(240,170,18,.35);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--sh-sm);color:var(--ink);">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+<strong style="font-size:14px;">&#9728;&#65039; Apel Pagi</strong>
+<span id="am-status-pagi" style="font-size:12px;color:var(--ink3);">Memuat status...</span>
+</div>
+<div id="am-window-pagi" style="font-size:11px;color:var(--accent2);font-weight:600;margin-bottom:10px;"></div>
+<div id="am-buttons-pagi" class="am-btn-grid"></div>
+</div>
+<div id="am-confirm-box-pagi" class="am-confirm-modern" style="display:none;background:linear-gradient(145deg,#FFFDF5,var(--gold-lt));border:1px solid rgba(240,170,18,.35);border-radius:var(--r-lg);padding:18px 16px 16px;margin-bottom:14px;box-shadow:var(--sh-md);color:var(--ink);">
+<div class="am-confirm-accent"></div>
+<div id="am-confirm-title-pagi" style="font-weight:800;font-size:15px;margin-bottom:8px;"></div>
+<div id="am-confirm-info-pagi" style="font-size:12px;color:var(--g400);margin-bottom:14px;"></div>
+<button class="am-btn-submit" id="am-btn-simpan-pagi" onclick="amSimpanAbsen('PAGI')"><span class="am-submit-ic">&#10003;</span>Simpan Absen</button>
+<div style="text-align:center;margin-top:10px;">
+<button class="btn btn-sm" onclick="amBatalPilih('PAGI')" style="background:transparent;border:none;color:var(--g400);font-weight:600;">Batal, pilih ulang</button>
+</div>
+</div>
+<div id="am-result-pagi" style="display:none;padding:12px 14px;border-radius:var(--r-lg);margin-top:8px;font-size:13px;font-weight:600;"></div>
+<div id="am-rekap-box-pagi" style="display:none;background:linear-gradient(145deg,#FFFDF5,var(--gold-lt));border:1px solid rgba(240,170,18,.35);border-radius:var(--r-lg);padding:16px;margin-top:14px;box-shadow:var(--sh-sm);color:var(--ink);">
+<div style="font-weight:700;font-size:14px;margin-bottom:8px;">🗂️ Rekap Absen Saya Hari Ini</div>
+<div id="am-rekap-content-pagi" style="font-size:12px;"></div>
+</div>
+</div>
+</div>
+<!-- PANEL: ABSEN SORE (terpisah dari Absen Pagi) -->
+<div class="panel" id="panel-absensore">
+<div style="max-width:720px;margin:0 auto;">
+<div class="am-hero">
+<div class="am-hero-icon">&#127749;</div>
+<h2 class="am-hero-title">Absen Sore</h2>
+<p class="am-hero-sub">Absen Apel &amp; Hadir hanya bisa dilakukan di lokasi apel/kantor. Absen Cuti / Dinas Luar / Sakit / Izin / WFH bisa dilakukan di mana saja.</p>
+</div>
+<div class="am-status-row">
+<div id="am-waktu-box-sore" class="am-status-pill neutral">
+<span class="am-status-ic">&#128337;</span>
+<div class="am-status-txt"><span class="am-status-lbl">Waktu</span><span id="am-waktu-text-sore">Memuat jadwal...</span></div>
+</div>
+<div id="am-gps-box-sore" class="am-status-pill neutral">
+<span id="am-gps-icon-sore" class="am-status-ic">&#128205;</span>
+<div class="am-status-txt"><span class="am-status-lbl">Lokasi</span><span id="am-gps-text-sore">Mengambil lokasi GPS...</span></div>
+<button id="am-gps-retrybtn-sore" onclick="amAmbilGPS()" style="display:none;margin-left:auto;padding:6px 10px;border-radius:8px;border:none;background:#F0AA12;color:#fff;font-weight:700;cursor:pointer;font-size:10.5px;">&#128260; Ulang</button>
+<button id="am-gps-openbtn-sore" onclick="amBukaTabBaru()" style="display:none;margin-left:6px;padding:6px 10px;border-radius:8px;border:none;background:#F0AA12;color:#fff;font-weight:700;cursor:pointer;font-size:10.5px;">Tab Baru</button>
+</div>
+</div>
+<div id="am-jarak-box-sore" style="display:none;padding:12px 14px;border-radius:var(--r-lg);border:1px solid rgba(240,170,18,.35);margin-bottom:16px;font-size:13px;color:var(--ink);">
+<div id="am-jarak-text-sore" style="display:flex;align-items:center;gap:8px;font-weight:600;"></div>
+<div id="am-jarak-toolbar-sore" style="display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:8px;">
+<button type="button" id="am-jarak-size-btn-sore" onclick="amToggleJarakMapSize('sore')" style="padding:5px 9px;border-radius:8px;border:1px solid var(--g200);background:#fff;color:var(--ink3);font-weight:700;cursor:pointer;font-size:10.5px;">&#8599; Perbesar Peta</button>
+<button type="button" id="am-jarak-hide-btn-sore" onclick="amToggleJarakMapVisible('sore')" style="padding:5px 9px;border-radius:8px;border:1px solid var(--g200);background:#fff;color:var(--ink3);font-weight:700;cursor:pointer;font-size:10.5px;">&#128065; Sembunyikan Peta</button>
+</div>
+<div id="am-jarak-map-sore" class="am-jarak-map" style="width:100%;height:200px;border-radius:var(--r);margin-top:10px;border:1px solid var(--g200);display:none;"></div>
+</div>
+<div class="am-card" style="background:linear-gradient(145deg,#FFFDF5,var(--gold-lt));border:1px solid rgba(240,170,18,.35);border-radius:var(--r-lg);padding:16px;margin-bottom:14px;box-shadow:var(--sh-sm);color:var(--ink);">
+<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px;">
+<strong style="font-size:14px;">&#127749; Apel Sore</strong>
+<span id="am-status-sore" style="font-size:12px;color:var(--ink3);">Memuat status...</span>
+</div>
+<div id="am-window-sore" style="font-size:11px;color:var(--accent2);font-weight:600;margin-bottom:10px;"></div>
+<div id="am-buttons-sore" class="am-btn-grid"></div>
+</div>
+<div id="am-confirm-box-sore" class="am-confirm-modern" style="display:none;background:linear-gradient(145deg,#FFFDF5,var(--gold-lt));border:1px solid rgba(240,170,18,.35);border-radius:var(--r-lg);padding:18px 16px 16px;margin-bottom:14px;box-shadow:var(--sh-md);color:var(--ink);">
+<div class="am-confirm-accent"></div>
+<div id="am-confirm-title-sore" style="font-weight:800;font-size:15px;margin-bottom:8px;"></div>
+<div id="am-confirm-info-sore" style="font-size:12px;color:var(--g400);margin-bottom:14px;"></div>
+<button class="am-btn-submit" id="am-btn-simpan-sore" onclick="amSimpanAbsen('SORE')"><span class="am-submit-ic">&#10003;</span>Simpan Absen</button>
+<div style="text-align:center;margin-top:10px;">
+<button class="btn btn-sm" onclick="amBatalPilih('SORE')" style="background:transparent;border:none;color:var(--g400);font-weight:600;">Batal, pilih ulang</button>
+</div>
+</div>
+<div id="am-result-sore" style="display:none;padding:12px 14px;border-radius:var(--r-lg);margin-top:8px;font-size:13px;font-weight:600;"></div>
+<div id="am-rekap-box-sore" style="display:none;background:linear-gradient(145deg,#FFFDF5,var(--gold-lt));border:1px solid rgba(240,170,18,.35);border-radius:var(--r-lg);padding:16px;margin-top:14px;box-shadow:var(--sh-sm);color:var(--ink);">
+<div style="font-weight:700;font-size:14px;margin-bottom:8px;">🗂️ Rekap Absen Saya Hari Ini</div>
+<div id="am-rekap-content-sore" style="font-size:12px;"></div>
+</div>
+</div>
+</div>
+<!-- PANEL: RIWAYAT & CETAK LAPORAN ABSEN SAYA — PAGI (terpisah dari Sore) -->
+<div class="panel" id="panel-riwayat-pagi">
+<div class="ph"><h2>🌅 Riwayat &amp; Cetak Absen Pagi</h2><p>Riwayat Apel Pagi berdasarkan NIP Anda, dan cetak laporan absen pribadi Apel Pagi</p></div>
+<div class="card" style="margin-bottom:12px">
+<div class="filter-row">
+<div class="fg"><label class="fl">Bulan</label>
+<select id="rs-bl-pagi" class="fc fc-sm" style="width:130px">
+<option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
+<option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
+<option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
+<option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+</select>
+</div>
+<div class="fg"><label class="fl">Tahun</label><select id="rs-thn-pagi" class="fc fc-sm" style="width:90px"></select></div>
+<button class="btn btn-gold btn-sm" onclick="loadRiwayatPagi()" style="margin-top:17px">🔍 Tampilkan</button>
+<button class="btn btn-ink btn-sm" onclick="cetakLaporanPagi()" style="margin-top:17px">🖨️ Cetak Laporan Absen Pagi</button>
+</div>
+</div>
+<div class="card">
+<div style="font-size:12.5px;font-weight:700;margin-bottom:13px">🌅 Riwayat Apel Pagi</div>
+<div class="rkp-table-wrap">
+<table class="rkp-table">
+<thead><tr><th>Tanggal</th><th>Hari</th><th>Jam</th><th>Jenis</th><th>Keterangan</th></tr></thead>
+<tbody id="rs-body-pagi"><tr><td colspan="5" style="text-align:center;padding:22px;color:var(--g500)">Pilih bulan &amp; tahun lalu klik Tampilkan</td></tr></tbody>
+</table>
+</div>
+</div>
+</div>
+<!-- PANEL: RIWAYAT & CETAK LAPORAN ABSEN SAYA — SORE (terpisah dari Pagi) -->
+<div class="panel" id="panel-riwayat-sore">
+<div class="ph"><h2>🌇 Riwayat &amp; Cetak Absen Sore</h2><p>Riwayat Apel Sore berdasarkan NIP Anda, dan cetak laporan absen pribadi Apel Sore</p></div>
+<div class="card" style="margin-bottom:12px">
+<div class="filter-row">
+<div class="fg"><label class="fl">Bulan</label>
+<select id="rs-bl-sore" class="fc fc-sm" style="width:130px">
+<option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
+<option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
+<option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
+<option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+</select>
+</div>
+<div class="fg"><label class="fl">Tahun</label><select id="rs-thn-sore" class="fc fc-sm" style="width:90px"></select></div>
+<button class="btn btn-gold btn-sm" onclick="loadRiwayatSore()" style="margin-top:17px">🔍 Tampilkan</button>
+<button class="btn btn-ink btn-sm" onclick="cetakLaporanSore()" style="margin-top:17px">🖨️ Cetak Laporan Absen Sore</button>
+</div>
+</div>
+<div class="card">
+<div style="font-size:12.5px;font-weight:700;margin-bottom:13px">🌇 Riwayat Apel Sore</div>
+<div class="rkp-table-wrap">
+<table class="rkp-table">
+<thead><tr><th>Tanggal</th><th>Hari</th><th>Jam</th><th>Jenis</th><th>Keterangan</th></tr></thead>
+<tbody id="rs-body-sore"><tr><td colspan="5" style="text-align:center;padding:22px;color:var(--g500)">Pilih bulan &amp; tahun lalu klik Tampilkan</td></tr></tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="panel" id="panel-dashboard">
+<div class="ph"><h2>📊 Dashboard</h2><p>Grafik tren dan profil instansi</p></div>
+<div class="hero-banner">
+<div>
+<div class="hero-ttl">🏛️ Apel Pagi &amp; Sore</div>
+<div class="hero-clock" id="dash-clock">--:--:--</div>
+<div class="hero-date" id="dash-date">—</div>
+<span class="hero-status" id="dash-status" style="background:rgba(255,255,255,.06);color:rgba(255,255,255,.45)">⏳ Standby</span>
+</div>
+<div class="hero-right">
+<div class="hero-pct" id="dash-pct">—</div>
+<div class="hero-pct-sub">Kehadiran Hari Ini</div>
+<div style="font-size:10.5px;color:rgba(255,255,255,.35);margin-top:7px;text-align:right" id="dash-instansi">Dinas Transmigrasi<br>Kab. Muna Barat</div>
+</div>
+</div>
+<div class="stat-grid">
+<div class="sc sc-blue"><div class="sc-ico">👥</div><div class="sc-num" id="d-total">0</div><div class="sc-lbl">Total Pegawai</div></div>
+<div class="sc sc-green"><div class="sc-ico">✅</div><div class="sc-num" id="d-hadir">—</div><div class="sc-lbl">Hadir Pagi</div></div>
+<div class="sc sc-blue"><div class="sc-ico">🌇</div><div class="sc-num" id="d-sore">—</div><div class="sc-lbl">Hadir Sore</div></div>
+<div class="sc sc-red"><div class="sc-ico">🔴</div><div class="sc-num" id="d-alpha">—</div><div class="sc-lbl">Alpha Pagi</div></div>
+<div class="sc sc-gold"><div class="sc-ico">🏢</div><div class="sc-num" id="d-unit">0</div><div class="sc-lbl">Unit Kerja</div></div>
+</div>
+<div class="filter-row" style="margin-bottom:12px">
+<div class="fg"><label class="fl">Bulan</label>
+<select id="gf-bl" class="fc fc-sm" style="width:125px">
+<option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
+<option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
+<option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
+<option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+</select>
+</div>
+<div class="fg"><label class="fl">Tahun</label><select id="gf-thn" class="fc fc-sm" style="width:90px"></select></div>
+<button class="btn btn-gold btn-sm" onclick="loadGrafik()" style="margin-top:17px">📊 Tampilkan</button>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px">
+<div class="chart-wrap"><div class="chart-title">Distribusi Status</div><canvas id="chartDonut"></canvas></div>
+<div class="chart-wrap"><div class="chart-title">Tren Harian</div><canvas id="chartLine"></canvas></div>
+</div>
+<div class="chart-wrap" style="height:260px;margin-bottom:12px"><div class="chart-title">Kehadiran Harian</div><canvas id="chartBar"></canvas></div>
+<div class="stat-grid" id="gf-stat"></div>
+</div>
+<!-- PANEL: INPUT PEGAWAI -->
+<div class="panel" id="panel-input-pegawai">
+<div class="ph ph-row">
+<div><h2>👤 Input Pegawai</h2><p>Tambah dan kelola data pegawai aktif</p></div>
+<button class="btn btn-gold btn-sm" onclick="openMoPegawai()">＋ Tambah Pegawai</button>
+</div>
+<div class="stat-grid" style="grid-template-columns:repeat(3,1fr)">
+<div class="sc sc-blue"><div class="sc-ico">👥</div><div class="sc-num" id="ps-total">0</div><div class="sc-lbl">Total Aktif</div></div>
+<div class="sc sc-gold"><div class="sc-ico">🏢</div><div class="sc-num" id="ps-unit">0</div><div class="sc-lbl">Unit Kerja</div></div>
+<div class="sc sc-purple"><div class="sc-ico">💼</div><div class="sc-num" id="ps-jabatan">0</div><div class="sc-lbl">Jabatan</div></div>
+</div>
+<div class="card">
+<div class="filter-row">
+<div class="fg"><label class="fl">Cari</label><input type="text" id="ps-srch" class="fc fc-sm" placeholder="Nama / NIP..." style="width:180px" oninput="renderPegList()"></div>
+<div class="fg"><label class="fl">Unit Kerja</label><select id="ps-unit-f" class="fc fc-sm" style="width:160px" onchange="renderPegList()"><option value="">Semua Unit</option></select></div>
+</div>
+<div style="font-size:10.5px;color:var(--g500);margin-bottom:8px" id="ps-info"></div>
+<div id="peg-list"><div class="loading"><div class="spin"></div>Memuat...</div></div>
+</div>
+</div>
+<!-- PANEL: REKAP PEGAWAI -->
+<div class="panel" id="panel-rekap-pegawai">
+<div class="ph ph-row">
+<div><h2>📑 Rekapitulasi Pegawai</h2><p>Rekap kehadiran bulanan seluruh pegawai</p></div>
+<div style="display:flex;gap:7px">
+<button class="btn btn-ghost btn-sm" onclick="loadRekap()">🔄 Refresh</button>
+<button class="btn btn-ink btn-sm" onclick="genRekap()">⚙️ Generate</button>
+</div>
+</div>
+<div class="card" style="margin-bottom:12px">
+<div class="filter-row">
+<div class="fg"><label class="fl">Bulan</label>
+<select id="rkp-bl" class="fc fc-sm" style="width:130px">
+<option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
+<option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
+<option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
+<option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+</select>
+</div>
+<div class="fg"><label class="fl">Tahun</label><select id="rkp-thn" class="fc fc-sm" style="width:90px"></select></div>
+<button class="btn btn-gold btn-sm" onclick="loadRekap()" style="margin-top:17px">Tampilkan</button>
+</div>
+<div class="stat-grid" id="rkp-stat"></div>
+</div>
+<div class="card">
+<div style="font-size:12.5px;font-weight:700;margin-bottom:13px" id="rkp-title">Tabel Rekapitulasi</div>
+<div class="rkp-table-wrap">
+<table class="rkp-table">
+<thead><tr><th>NIP</th><th>Nama</th><th>Unit Kerja</th><th>Hadir</th><th>Alpha</th><th>Sakit</th><th>Izin</th><th>Cuti</th><th>DL</th><th>WFH</th><th>%</th></tr></thead>
+<tbody id="rkp-body"><tr><td colspan="11" style="text-align:center;padding:22px;color:var(--g500)">Pilih bulan &amp; tahun lalu klik Tampilkan</td></tr></tbody>
+<tfoot id="rkp-foot" style="display:none">
+<tr><td colspan="3" style="text-align:left;font-family:var(--font)">TOTAL</td>
+<td id="rf-h">0</td><td id="rf-a">0</td><td id="rf-s">0</td><td id="rf-i">0</td>
+<td id="rf-c">0</td><td id="rf-d">0</td><td id="rf-tb">0</td><td id="rf-pct">—</td></tr>
+</tfoot>
+</table>
+</div>
+</div>
+</div>
+<!-- PANEL: APEL PAGI -->
+<div class="panel" id="panel-apel-pagi">
+<div class="ph ph-row"><div><h2>🌅 Apel Pagi</h2><p>Input kehadiran apel pagi pegawai</p></div></div>
+<div class="card">
+<div class="tgl-row">
+<div class="fg" style="max-width:200px"><label class="fl">Tanggal</label><input type="date" id="pg-tgl" class="fc" onchange="tglBerubah('pg')"></div>
+<button class="btn btn-gold" id="pg-btn-terapkan" onclick="terapkanTanggal('pg')" disabled>✔ Terapkan</button>
+<button class="btn btn-ghost" onclick="tglHariIni('pg')" title="Kembali ke tanggal hari ini">📅 Hari Ini</button>
+<div class="tgl-status" id="pg-tgl-status"></div>
+</div>
+<div class="jl-bar">
+<div class="jl-item">
+<div class="jl-icon jl-jam-i">🕐</div>
+<div><div class="jl-lbl">Jam Pelaksanaan</div>
+<div class="jl-val"><span id="pg-jam-disp">07:30</span><button class="jl-edit" onclick="openMoJam('pagi')">✏️ Edit</button></div></div>
+</div>
+<div class="jl-div"></div>
+<div class="jl-item" style="flex:2">
+<div class="jl-icon jl-lok-i">📍</div>
+<div style="flex:1"><div class="jl-lbl">Lokasi</div>
+<div class="jl-val"><span id="pg-lok-disp" style="font-size:11.5px;max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Belum diset</span><button class="jl-edit" onclick="openMoLokasi('pagi')">📍 Edit</button></div></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:185px 1fr;gap:13px;align-items:start">
+<div>
+<div class="fl" style="margin-bottom:5px">Foto Dokumentasi</div>
+<div class="upload-zone" id="pg-zone" onclick="document.getElementById('pg-file').click()">
+<div class="uz-ph"><div class="uz-icon">📷</div><div class="uz-text">Klik/seret foto<br><small>JPG/PNG • Maks 5MB</small></div></div>
+<img class="uz-prev" id="pg-prev" alt="">
+</div>
+<input type="file" id="pg-file" accept="image/*" style="display:none" onchange="handlePhoto('pg')">
+<div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap">
+<button class="btn btn-ghost btn-sm" onclick="openCamera('pg')">📱 Kamera</button>
+<button class="btn btn-ghost btn-sm" onclick="document.getElementById('pg-file').click()">🖼️ Galeri</button>
+<button class="btn btn-success btn-sm" id="pg-simpan-foto" onclick="simpanFotoTerpisah('pg')">💾 Simpan Foto</button>
+<button class="btn btn-danger btn-sm" id="pg-clear" onclick="clearPhoto('pg')" style="display:none">✕</button>
+</div>
+</div>
+<div>
+<div class="fl" style="margin-bottom:5px">Keterangan</div>
+<textarea class="fc" id="pg-ket" placeholder="Catatan apel pagi..." style="min-height:75px"></textarea>
+<div class="hint hint-blue" id="pg-hint" style="margin-top:6px;font-size:11px">Memuat data pegawai...</div>
+</div>
+</div>
+</div>
+<div class="att-section">
+<div class="att-hdr">
+<div><div class="att-title">🌅 Peserta Apel Pagi <span class="att-badge ab-pagi">PAGI</span></div></div>
+<div class="att-stats">
+<div class="as as-h"><div class="as-n" id="as-pg-h">0</div><div class="as-l">Hadir</div></div>
+<div class="as as-a"><div class="as-n" id="as-pg-a">0</div><div class="as-l">Alpha</div></div>
+<div class="as as-s"><div class="as-n" id="as-pg-s">0</div><div class="as-l">Sakit</div></div>
+<div class="as as-i"><div class="as-n" id="as-pg-i">0</div><div class="as-l">Izin</div></div>
+<div class="as as-c"><div class="as-n" id="as-pg-c">0</div><div class="as-l">Cuti</div></div>
+<div class="as as-d"><div class="as-n" id="as-pg-d">0</div><div class="as-l">DL</div></div>
+<div class="as as-tb"><div class="as-n" id="as-pg-tb">0</div><div class="as-l">WFH</div></div>
+</div>
+</div>
+<div class="att-filters">
+<input class="f-search" id="srch-pg" placeholder="Cari nama / NIP..." oninput="renderAtt('pg')">
+<select class="f-unit" id="unit-pg" onchange="renderAtt('pg')"><option value="">Semua Unit</option></select>
+</div>
+<div class="bulk-bar">
+<span class="bulk-lbl">Set semua:</span>
+<button class="kb kb-h" onclick="bulkSet('pg','hadir')">✅ Hadir</button>
+<button class="kb kb-ap" onclick="bulkSet('pg','apel')">🙋 Apel</button>
+<button class="kb kb-a" onclick="bulkSet('pg','alpha')">🔴 Alpha</button>
+<button class="kb kb-s" onclick="bulkSet('pg','sakit')">🏥 Sakit</button>
+<button class="kb kb-i" onclick="bulkSet('pg','izin')">📩 Izin</button>
+<button class="kb kb-c" onclick="bulkSet('pg','cuti')">🏖️ Cuti</button>
+<button class="kb kb-d" onclick="bulkSet('pg','dl')">🚗 DL</button>
+<button class="kb kb-tb" onclick="bulkSet('pg','tb')">📚 WFH</button>
+<button class="btn btn-ghost btn-sm" onclick="bulkSet('pg','')" style="margin-left:auto">↺ Reset</button>
+</div>
+<div style="overflow-x:auto">
+<table class="tbl">
+<thead><tr><th>NIP</th><th>Nama Pegawai</th><th>Unit Kerja</th><th class="tc" style="min-width:155px">Status</th></tr></thead>
+<tbody id="tbody-pg"><tr><td colspan="4"><div class="loading"><div class="spin"></div>Memuat...</div></td></tr></tbody>
+</table>
+</div>
+<div class="sum-strip" id="strip-pg"></div>
+<div class="att-actions">
+<div class="att-info" id="info-pg">—</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<button class="btn btn-ghost btn-sm" onclick="resetAtt('pg')">↺ Reset</button>
+<button class="btn btn-ghost btn-sm" onclick="muatTersimpan('pg')">📥 Muat Tersimpan</button>
+<button class="btn btn-gold" id="btn-save-pg" onclick="saveApel('pg')">🌅 Simpan Apel Pagi</button>
+</div>
+</div>
+</div>
+<div id="pg-result"></div>
+</div>
+<!-- PANEL: APEL SORE -->
+<div class="panel" id="panel-apel-sore">
+<div class="ph ph-row"><div><h2>🌇 Apel Sore</h2><p>Input kehadiran apel sore pegawai</p></div></div>
+<div class="card">
+<div class="tgl-row">
+<div class="fg" style="max-width:200px"><label class="fl">Tanggal</label><input type="date" id="sr-tgl" class="fc" onchange="tglBerubah('sr')"></div>
+<button class="btn btn-gold" id="sr-btn-terapkan" onclick="terapkanTanggal('sr')" disabled>✔ Terapkan</button>
+<button class="btn btn-ghost" onclick="tglHariIni('sr')" title="Kembali ke tanggal hari ini">📅 Hari Ini</button>
+<div class="tgl-status" id="sr-tgl-status"></div>
+</div>
+<div class="jl-bar">
+<div class="jl-item">
+<div class="jl-icon jl-jam-i">🕐</div>
+<div><div class="jl-lbl">Jam Pelaksanaan</div>
+<div class="jl-val"><span id="sr-jam-disp">16:00</span><button class="jl-edit" onclick="openMoJam('sore')">✏️ Edit</button></div></div>
+</div>
+<div class="jl-div"></div>
+<div class="jl-item" style="flex:2">
+<div class="jl-icon jl-lok-i">📍</div>
+<div style="flex:1"><div class="jl-lbl">Lokasi</div>
+<div class="jl-val"><span id="sr-lok-disp" style="font-size:11.5px;max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Belum diset</span><button class="jl-edit" onclick="openMoLokasi('sore')">📍 Edit</button></div></div>
+</div>
+</div>
+<div style="display:grid;grid-template-columns:185px 1fr;gap:13px;align-items:start">
+<div>
+<div class="fl" style="margin-bottom:5px">Foto Dokumentasi</div>
+<div class="upload-zone" id="sr-zone" onclick="document.getElementById('sr-file').click()">
+<div class="uz-ph"><div class="uz-icon">📷</div><div class="uz-text">Klik/seret foto<br><small>JPG/PNG • Maks 5MB</small></div></div>
+<img class="uz-prev" id="sr-prev" alt="">
+</div>
+<input type="file" id="sr-file" accept="image/*" style="display:none" onchange="handlePhoto('sr')">
+<div style="margin-top:6px;display:flex;gap:5px;flex-wrap:wrap">
+<button class="btn btn-ghost btn-sm" onclick="openCamera('sr')">📱 Kamera</button>
+<button class="btn btn-ghost btn-sm" onclick="document.getElementById('sr-file').click()">🖼️ Galeri</button>
+<button class="btn btn-success btn-sm" id="sr-simpan-foto" onclick="simpanFotoTerpisah('sr')">💾 Simpan Foto</button>
+<button class="btn btn-danger btn-sm" id="sr-clear" onclick="clearPhoto('sr')" style="display:none">✕</button>
+</div>
+</div>
+<div>
+<div class="fl" style="margin-bottom:5px">Keterangan</div>
+<textarea class="fc" id="sr-ket" placeholder="Catatan apel sore..." style="min-height:75px"></textarea>
+<div class="hint hint-blue" id="sr-hint" style="margin-top:6px;font-size:11px">Memuat data pegawai...</div>
+</div>
+</div>
+</div>
+<div class="att-section">
+<div class="att-hdr">
+<div><div class="att-title">🌇 Peserta Apel Sore <span class="att-badge ab-sore">SORE</span></div></div>
+<div class="att-stats">
+<div class="as as-h"><div class="as-n" id="as-sr-h">0</div><div class="as-l">Hadir</div></div>
+<div class="as as-a"><div class="as-n" id="as-sr-a">0</div><div class="as-l">Alpha</div></div>
+<div class="as as-s"><div class="as-n" id="as-sr-s">0</div><div class="as-l">Sakit</div></div>
+<div class="as as-i"><div class="as-n" id="as-sr-i">0</div><div class="as-l">Izin</div></div>
+<div class="as as-c"><div class="as-n" id="as-sr-c">0</div><div class="as-l">Cuti</div></div>
+<div class="as as-d"><div class="as-n" id="as-sr-d">0</div><div class="as-l">DL</div></div>
+<div class="as as-tb"><div class="as-n" id="as-sr-tb">0</div><div class="as-l">WFH</div></div>
+</div>
+</div>
+<div class="att-filters">
+<input class="f-search" id="srch-sr" placeholder="Cari nama / NIP..." oninput="renderAtt('sr')">
+<select class="f-unit" id="unit-sr" onchange="renderAtt('sr')"><option value="">Semua Unit</option></select>
+</div>
+<div class="bulk-bar">
+<span class="bulk-lbl">Set semua:</span>
+<button class="kb kb-h" onclick="bulkSet('sr','hadir')">✅ Hadir</button>
+<button class="kb kb-ap" onclick="bulkSet('sr','apel')">🙋 Apel</button>
+<button class="kb kb-a" onclick="bulkSet('sr','alpha')">🔴 Alpha</button>
+<button class="kb kb-s" onclick="bulkSet('sr','sakit')">🏥 Sakit</button>
+<button class="kb kb-i" onclick="bulkSet('sr','izin')">📩 Izin</button>
+<button class="kb kb-c" onclick="bulkSet('sr','cuti')">🏖️ Cuti</button>
+<button class="kb kb-d" onclick="bulkSet('sr','dl')">🚗 DL</button>
+<button class="kb kb-tb" onclick="bulkSet('sr','tb')">📚 WFH</button>
+<button class="btn btn-ghost btn-sm" onclick="bulkSet('sr','')" style="margin-left:auto">↺ Reset</button>
+</div>
+<div style="overflow-x:auto">
+<table class="tbl">
+<thead><tr><th>NIP</th><th>Nama Pegawai</th><th>Unit Kerja</th><th class="tc" style="min-width:155px">Status</th></tr></thead>
+<tbody id="tbody-sr"><tr><td colspan="4"><div class="loading"><div class="spin"></div>Memuat...</div></td></tr></tbody>
+</table>
+</div>
+<div class="sum-strip" id="strip-sr"></div>
+<div class="att-actions">
+<div class="att-info" id="info-sr">—</div>
+<div style="display:flex;gap:6px;flex-wrap:wrap">
+<button class="btn btn-ghost btn-sm" onclick="resetAtt('sr')">↺ Reset</button>
+<button class="btn btn-ghost btn-sm" onclick="muatTersimpan('sr')">📥 Muat Tersimpan</button>
+<button class="btn btn-gold" id="btn-save-sr" onclick="saveApel('sr')">🌇 Simpan Apel Sore</button>
+</div>
+</div>
+</div>
+<div id="sr-result"></div>
+</div>
+<!-- PANEL: MONITORING HARIAN -->
+<div class="panel" id="panel-monitoring-harian">
+<div class="ph"><h2>📡 Monitoring Riwayat Apel</h2><p>Lihat dan pantau data kehadiran apel per hari</p></div>
+<div class="card">
+<div class="filter-row">
+<div class="fg"><label class="fl">Tanggal</label><input type="date" id="mh-tgl" class="fc fc-sm" style="width:145px"></div>
+<button class="btn btn-gold btn-sm" onclick="loadMonitoringHarian()" style="margin-top:17px">🔍 Tampilkan</button>
+<button class="btn btn-ghost btn-sm" onclick="loadMonitoringHariIni()" style="margin-top:17px">📅 Hari Ini</button>
+</div>
+<div id="mh-result"><div class="empty"><div class="empty-icon">📡</div><p>Pilih tanggal dan klik Tampilkan</p></div></div>
+</div>
+</div>
+<!-- PANEL: MONITORING BULANAN -->
+<div class="panel" id="panel-monitoring-bulanan">
+<div class="ph ph-row">
+<div><h2>📊 Rekapitulasi Bulanan</h2><p>Monitoring rekap kehadiran bulanan</p></div>
+<div style="display:flex;gap:7px">
+<button class="btn btn-ghost btn-sm" onclick="loadMonitoringBulanan()">🔄 Refresh</button>
+<button class="btn btn-ink btn-sm" onclick="genRekapMonitoring()">⚙️ Generate Rekap</button>
+<button class="btn btn-gold btn-sm" onclick="cetakRekapBulananMonitoring()">🖨️ Cetak Rekap</button>
+</div>
+</div>
+<div class="card" style="margin-bottom:12px">
+<div class="filter-row">
+<div class="fg"><label class="fl">Bulan</label>
+<select id="mb-bl" class="fc fc-sm" style="width:130px">
+<option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
+<option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
+<option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
+<option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+</select>
+</div>
+<div class="fg"><label class="fl">Tahun</label><select id="mb-thn" class="fc fc-sm" style="width:90px"></select></div>
+<button class="btn btn-gold btn-sm" onclick="loadMonitoringBulanan()" style="margin-top:17px">Tampilkan</button>
+</div>
+<div class="stat-grid" id="mb-stat"></div>
+</div>
+<div class="card">
+<div style="font-size:12.5px;font-weight:700;margin-bottom:13px" id="mb-title">Tabel Rekapitulasi Bulanan</div>
+<div class="rkp-table-wrap">
+<table class="rkp-table">
+<thead><tr><th>NIP</th><th>Nama</th><th>Unit Kerja</th><th>Hadir</th><th>Alpha</th><th>Sakit</th><th>Izin</th><th>Cuti</th><th>DL</th><th>WFH</th><th>%</th></tr></thead>
+<tbody id="mb-body"><tr><td colspan="11" style="text-align:center;padding:22px;color:var(--g500)">Pilih bulan &amp; tahun lalu klik Tampilkan</td></tr></tbody>
+<tfoot id="mb-foot" style="display:none">
+<tr><td colspan="3" style="text-align:left;font-family:var(--font)">TOTAL</td>
+<td id="mbf-h">0</td><td id="mbf-a">0</td><td id="mbf-s">0</td><td id="mbf-i">0</td>
+<td id="mbf-c">0</td><td id="mbf-d">0</td><td id="mbf-tb">0</td><td id="mbf-pct">—</td></tr>
+</tfoot>
+</table>
+<div id="mb-cetak-strip" style="display:none;padding:11px 0;border-top:1px solid rgba(61,107,194,.12);margin-top:11px;display:flex;gap:7px;flex-wrap:wrap;align-items:center">
+<span style="font-size:9.5px;font-weight:800;color:var(--g500);text-transform:uppercase;letter-spacing:.08em">🖨️ Cetak</span>
+<button class="btn btn-gold btn-sm" onclick="cetakRekapBulananMonitoring()">📄 Cetak Laporan Rekap Bulanan</button>
+</div>
+</div>
+</div>
+</div>
+<!-- PANEL: REKAP FOTO DOKUMENTASI -->
+<div class="panel" id="panel-rekap-foto">
+<div class="ph ph-row">
+<div><h2>🖼️ Rekap Foto Dokumentasi</h2><p>Rekap seluruh foto dokumentasi apel yang sudah diupload</p></div>
+<div style="display:flex;gap:7px">
+<button class="btn btn-ghost btn-sm" onclick="loadRekapFoto()">🔄 Refresh</button>
+<button class="btn btn-gold btn-sm" onclick="cetakRekapFoto()">🖨️ Cetak Rekap Foto</button>
+</div>
+</div>
+<div class="card" style="margin-bottom:12px">
+<div class="filter-row">
+<div class="fg"><label class="fl">Tanggal</label><input type="date" id="rf-tgl" class="fc fc-sm" style="width:145px"></div>
+<div class="fg"><label class="fl">Tipe Apel</label>
+<select id="rf-tipe" class="fc fc-sm" style="width:130px">
+<option value="semua">Semua</option>
+<option value="pagi">Pagi</option>
+<option value="sore">Sore</option>
+</select>
+</div>
+<button class="btn btn-gold btn-sm" onclick="loadRekapFoto()" style="margin-top:17px">🔍 Tampilkan</button>
+<button class="btn btn-ghost btn-sm" onclick="loadRekapFotoHariIni()" style="margin-top:17px">📅 Hari Ini</button>
+</div>
+<div class="stat-grid" id="rf-stat"></div>
+</div>
+<!-- TAMBAHAN: REKAP FOTO PER BULAN (Pagi & Sore) -->
+<div class="card" style="margin-bottom:12px" id="rfb-card">
+<div style="font-size:12.5px;font-weight:700;margin-bottom:4px">🗓️ Rekap Foto Per Bulan (Pagi &amp; Sore)</div>
+<div style="font-size:10.5px;color:var(--g500);margin-bottom:10px">Gabungan foto apel pagi dan sore untuk seluruh tanggal dalam satu bulan, siap dicetak.</div>
+<div class="filter-row">
+<div class="fg"><label class="fl">Bulan</label>
+<select id="rfb-bl" class="fc fc-sm" style="width:130px">
+<option value="1">Januari</option><option value="2">Februari</option><option value="3">Maret</option>
+<option value="4">April</option><option value="5">Mei</option><option value="6">Juni</option>
+<option value="7">Juli</option><option value="8">Agustus</option><option value="9">September</option>
+<option value="10">Oktober</option><option value="11">November</option><option value="12">Desember</option>
+</select>
+</div>
+<div class="fg"><label class="fl">Tahun</label><select id="rfb-thn" class="fc fc-sm" style="width:90px"></select></div>
+<button class="btn btn-gold btn-sm" onclick="loadRekapFotoBulanan()" style="margin-top:17px">🔍 Tampilkan</button>
+<button class="btn btn-gold btn-sm" onclick="cetakRekapFotoBulanan()" style="margin-top:17px">🖨️ Cetak Rekap Foto Bulanan</button>
+</div>
+<div class="stat-grid" id="rfb-stat"></div>
+<div id="rfb-result"></div>
+</div>
+<div class="card">
+<div id="rf-result"><div class="empty"><div class="empty-icon">🖼️</div><p>Pilih tanggal dan klik Tampilkan untuk melihat rekap foto</p></div></div>
+</div>
+</div>
+<!-- PANEL: CETAK PAGI -->
+<div class="panel" id="panel-cetak-pagi">
+<div class="ph"><h2>🌅 Laporan Apel Pagi</h2><p>Cetak laporan kehadiran apel pagi</p></div>
+<div class="card">
+<div class="hint hint-gold" style="margin-bottom:12px">💡 Data diambil dari Spreadsheet. Pastikan data sudah disimpan terlebih dahulu.</div>
+<div class="filter-row">
+<div class="fg"><label class="fl">Tanggal</label><input type="date" id="cp-tgl" class="fc fc-sm" style="width:145px"></div>
+<button class="btn btn-gold btn-sm" onclick="loadCetak('pagi')" style="margin-top:17px">🔍 Tampilkan &amp; Cetak</button>
+</div>
+<div id="cp-result"><div class="empty"><div class="empty-icon">🌅</div><p>Pilih tanggal untuk melihat laporan</p></div></div>
+</div>
+</div>
+<!-- PANEL: CETAK SORE -->
+<div class="panel" id="panel-cetak-sore">
+<div class="ph"><h2>🌇 Laporan Apel Sore</h2><p>Cetak laporan kehadiran apel sore</p></div>
+<div class="card">
+<div class="hint hint-gold" style="margin-bottom:12px">💡 Data diambil dari Spreadsheet. Pastikan data sudah disimpan terlebih dahulu.</div>
+<div class="filter-row">
+<div class="fg"><label class="fl">Tanggal</label><input type="date" id="cs-tgl" class="fc fc-sm" style="width:145px"></div>
+<button class="btn btn-gold btn-sm" onclick="loadCetak('sore')" style="margin-top:17px">🔍 Tampilkan &amp; Cetak</button>
+</div>
+<div id="cs-result"><div class="empty"><div class="empty-icon">🌇</div><p>Pilih tanggal untuk melihat laporan</p></div></div>
+</div>
+</div>
+<!-- PANEL: CETAK LENGKAP -->
+<div class="panel" id="panel-cetak-lengkap">
+<div class="ph"><h2>📄 Laporan Lengkap</h2><p>Cetak laporan gabungan apel pagi dan sore</p></div>
+<div class="card">
+<div class="hint hint-gold" style="margin-bottom:12px">💡 Data diambil dari Spreadsheet. Pastikan data sudah disimpan terlebih dahulu.</div>
+<div class="filter-row">
+<div class="fg"><label class="fl">Tanggal</label><input type="date" id="cl-tgl" class="fc fc-sm" style="width:145px"></div>
+<button class="btn btn-gold btn-sm" onclick="loadCetakLengkap()" style="margin-top:17px">🔍 Tampilkan &amp; Cetak</button>
+</div>
+<div id="cl-result"><div class="empty"><div class="empty-icon">📄</div><p>Pilih tanggal untuk melihat laporan</p></div></div>
+</div>
+</div>
+<!-- PANEL: PENGATURAN -->
+<div class="panel" id="panel-pengaturan">
+<div class="ph"><h2>⚙️ Pengaturan</h2><p>Konfigurasi tanda tangan dan manajemen user</p></div>
+<div class="card" id="card-initall">
+<div class="card-hdr"><div class="card-hdr-icon">🚀</div><div class="card-hdr-title">Init All (Setup / Perbaikan Sistem Lengkap)</div></div>
+<div style="font-size:12px;color:var(--g400);margin-bottom:10px;line-height:1.5">
+Jalankan ini jika ada sheet/kolom yang belum lengkap, trigger otomatis tidak jalan, atau setelah pembaruan sistem. Aman dijalankan berkali-kali -- tidak akan menduplikasi atau menghapus data yang sudah ada.
+</div>
+<button class="btn btn-gold btn-sm" onclick="jalankanInitAll()">🚀 Jalankan Init All</button>
+<div id="initall-result" style="margin-top:10px;font-size:12px;white-space:pre-line"></div>
+</div>
+<div class="card">
+<div class="card-hdr"><div class="card-hdr-icon">✍️</div><div class="card-hdr-title">Tanda Tangan Laporan</div></div>
+<div class="fg"><label class="fl">Nama Instansi</label><input type="text" id="cfg-inst" class="fc"></div>
+<div class="fg"><label class="fl">Nama Dinas</label><input type="text" id="cfg-dinas" class="fc"></div>
+<div class="fg"><label class="fl">Alamat Kantor</label><textarea id="cfg-alamat" class="fc" rows="2"></textarea></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="fg"><label class="fl">Nama Kepala Dinas</label><input type="text" id="cfg-ttdnama" class="fc"></div>
+<div class="fg"><label class="fl">NIP Kepala Dinas</label><input type="text" id="cfg-ttdnip" class="fc"></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="fg"><label class="fl">Pangkat/Gol Kadis</label><input type="text" id="cfg-ttdpangkat" class="fc"></div>
+<div class="fg"><label class="fl">Nama Petugas Pelapor</label><input type="text" id="cfg-pelapornama" class="fc"></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="fg"><label class="fl">NIP Petugas Pelapor</label><input type="text" id="cfg-pelapornip" class="fc"></div>
+<div class="fg"><label class="fl">Pangkat Petugas Pelapor</label><input type="text" id="cfg-pelaporpangkat" class="fc"></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="fg"><label class="fl">Jam Apel Pagi</label><input type="time" id="cfg-jam-pg" class="fc" value="07:30"></div>
+<div class="fg"><label class="fl">Jam Apel Sore</label><input type="time" id="cfg-jam-sr" class="fc" value="16:00"></div>
+</div>
+<div class="fg"><label class="fl">Lokasi Default (nama/alamat)</label><input type="text" id="cfg-lokasi" class="fc"></div>
+<div style="display:flex;gap:7px;flex-wrap:wrap">
+<button class="btn btn-gold" onclick="saveSettings()">💾 Simpan Pengaturan</button>
+</div>
+</div>
+<div class="card" id="card-jendela-absen">
+<div class="card-hdr"><div class="card-hdr-icon">⏰</div><div class="card-hdr-title">Jendela Waktu Absen Mandiri (Individu ASN)</div></div>
+<div style="font-size:12px;color:var(--g400);margin-bottom:10px;line-height:1.5">
+Menentukan rentang jam ASN diperbolehkan melakukan <b>Absen Mandiri</b> sendiri lewat menu Absen Mandiri. Di luar rentang ini, tombol absen akan ditolak sistem dan ASN harus dibantu admin untuk input manual. Pengaturan ini <b>tidak</b> memengaruhi checklist Apel Pagi/Sore yang diisi admin.
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="fg"><label class="fl">Jam Mulai Absen (Pagi)</label><input type="time" id="cfg-jam-mulai-pg" class="fc" value="07:30"></div>
+<div class="fg"><label class="fl">Batas Mengabsen (Pagi)</label><input type="time" id="cfg-jam-batas-pg" class="fc" value="08:00"></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+<div class="fg"><label class="fl">Jam Mulai Absen Pulang (Sore)</label><input type="time" id="cfg-jam-mulai-sr" class="fc" value="16:00"></div>
+<div class="fg"><label class="fl">Batas Mengabsen (Sore)</label><input type="time" id="cfg-jam-batas-sr" class="fc" value="17:00"></div>
+</div>
+<div style="display:flex;gap:7px;flex-wrap:wrap">
+<button class="btn btn-gold" onclick="saveJendelaAbsen()">💾 Simpan Jendela Absen</button>
+</div>
+</div>
+<div class="card" id="card-gps-kantor">
+<div class="card-hdr"><div class="card-hdr-icon">🛰️</div><div class="card-hdr-title">Titik Koordinat Lokasi Apel (untuk validasi Absen Apel &amp; Hadir)</div></div>
+<div style="font-size:12px;color:var(--g400);margin-bottom:10px;line-height:1.5">
+Koordinat ini dipakai sistem untuk memastikan ASN benar-benar berada di lokasi apel/kantor saat melakukan <b>Absen Apel</b> atau <b>Absen Hadir</b> lewat Absen Mandiri. Wajib diisi &amp; disimpan, jika tidak ASN tidak akan bisa Absen Apel/Hadir. Jika jadwal atau lokasi apel berpindah (mis. dari kantor ke lapangan lain), tentukan ulang titik di peta lalu simpan di sini — perubahan langsung berlaku untuk semua ASN.
+</div>
+<div id="cfg-gps-status" style="padding:8px 10px;border-radius:var(--r);background:var(--g100);border:1px solid var(--g200);font-size:12px;margin-bottom:10px">Memuat koordinat tersimpan...</div>
+<!-- FIX v6.7: cara UTAMA menentukan titik kantor sekarang lewat PETA, bukan
+tombol "ambil GPS perangkat ini". Tombol GPS perangkat ternyata sering meleset
+jauh (mendarat di lokasi lain sama sekali, mis. kota yang berbeda) karena
+browser/OS memakai geolokasi jaringan (IP/WiFi) yang tidak akurat, bukan GPS
+satelit asli -- terutama di laptop/PC atau saat memakai VPN/jaringan kantor
+yang keluar lewat kota lain. Klik/geser pin di peta ini SAMA SEKALI TIDAK
+bergantung pada lokasi perangkat admin, jadi jauh lebih bisa diandalkan. -->
+<div style="font-size:12px;color:var(--g500);margin-bottom:6px">
+🗺️ <b>Cara paling akurat:</b> cari alamat kantor di kolom bawah ini, atau geser peta lalu <b>klik/tap tepat di titik lokasi apel/kantor</b>. Pin akan mengikuti, dan Latitude/Longitude otomatis terisi.
+</div>
+<div style="display:flex;gap:7px;margin-bottom:8px">
+<input type="text" id="cfg-map-search" class="fc" placeholder="Ketik alamat kantor lalu tekan Enter (mis. Jl. Komp. Perkantoran Lawa, Muna Barat)" style="flex:1" onkeydown="if(event.key==='Enter'){event.preventDefault();cfgCariAlamatPeta();}">
+<button class="btn btn-outline btn-sm" onclick="cfgCariAlamatPeta()" type="button">🔍 Cari</button>
+</div>
+<div id="cfg-map" style="width:100%;height:340px;border-radius:var(--r);margin-bottom:10px;border:1px solid var(--g200)"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+<div class="fg"><label class="fl">Latitude Kantor</label><input type="text" id="cfg-lat" class="fc" placeholder="-4.973300" inputmode="decimal" oninput="cfgSyncPinDariInput()"></div>
+<div class="fg"><label class="fl">Longitude Kantor</label><input type="text" id="cfg-lng" class="fc" placeholder="122.560000" inputmode="decimal" oninput="cfgSyncPinDariInput()"></div>
+<div class="fg"><label class="fl">Radius Toleransi (meter)</label><input type="number" id="cfg-radius" class="fc" placeholder="100" min="10" step="10" oninput="cfgSyncRadiusDariInput()"></div>
+</div>
+<div style="font-size:11px;color:var(--g500);margin-top:2px">Latitude/Longitude di atas mengikuti pin di peta secara otomatis. Bisa juga diketik manual -- pin di peta akan ikut pindah.</div>
+<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:10px;align-items:center">
+<button class="btn btn-gold" onclick="saveGPSKantor()">📍 Simpan Titik Kantor</button>
+<button class="btn btn-outline btn-sm" onclick="getGPSSettings()" type="button">🛰️ Pakai Lokasi GPS Perangkat Ini (kurang disarankan)</button>
+</div>
+</div>
+<div class="card" id="card-autoprov">
+<div class="card-hdr"><div class="card-hdr-icon">⚡</div><div class="card-hdr-title">Provisioning Akun ASN Otomatis</div></div>
+<div style="font-size:12px;color:var(--g400);margin-bottom:10px;line-height:1.5">
+Buat akun login otomatis untuk seluruh ASN berdasarkan data di <b>Data Pegawai</b>. Username = <b>NIP</b> masing-masing ASN, password default = <b>munabaratkab</b>. Sarankan ASN mengganti password setelah login pertama.
+</div>
+<div id="autoprov-status" style="padding:8px 10px;border-radius:var(--r);background:var(--g100);border:1px solid var(--g200);font-size:12px;margin-bottom:10px">Memuat data pegawai...</div>
+<div id="autoprov-list"></div>
+<div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:4px">
+<button class="btn btn-success btn-sm" onclick="buatAkunSemuaASN()">⚡ Buat Akun untuk Semua ASN</button>
+<button class="btn btn-ghost btn-sm" onclick="loadPegawaiTanpaAkun()">🔄 Muat Ulang</button>
+</div>
+</div>
+<div class="card" id="card-usermgmt">
+<div class="card-hdr"><div class="card-hdr-icon">👤</div><div class="card-hdr-title">Manajemen User</div></div>
+<div id="user-list"><div class="loading"><div class="spin"></div>Memuat...</div></div>
+<button class="btn btn-gold btn-sm" style="margin-top:11px" onclick="openMoUser()">＋ Tambah User</button>
+</div>
+<div class="card" id="card-statuskhusus">
+<div class="card-hdr"><div class="card-hdr-icon">🧭</div><div class="card-hdr-title">Status Khusus ASN (Tugas di Dinas Lain / Cuti)</div></div>
+<div style="font-size:12px;color:var(--g400);margin-bottom:10px;line-height:1.5">
+Tandai ASN yang sedang <b>ditugaskan/dinotatugaskan ke dinas atau instansi lain</b> supaya sistem <b>tidak</b> menandai mereka Alpha secara otomatis setiap hari -- data absen mereka sama sekali tidak akan disentuh/diubah sistem selama status ini aktif. Untuk ASN yang sedang <b>Cuti</b>, sistem otomatis mencatat status <b>Cuti</b> (bukan Alpha) selama tanggal hari ini berada dalam rentang yang diatur di sini. Kosongkan Tanggal Mulai/Selesai jika belum tahu tanggal pastinya -- status akan tetap berlaku sampai dikembalikan Normal secara manual.
+</div>
+<div class="fg"><label class="fl">Pilih ASN</label><select id="sk-pilih-pegawai" class="fc"></select></div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px">
+<div class="fg"><label class="fl">Status</label><select id="sk-status" class="fc"><option value="TUGAS_LUAR">🧭 Tugas di Dinas Lain</option><option value="CUTI">🏖️ Cuti</option></select></div>
+<div class="fg"><label class="fl">Tanggal Mulai (opsional)</label><input type="date" id="sk-tgl-mulai" class="fc"></div>
+<div class="fg"><label class="fl">Tanggal Selesai (opsional)</label><input type="date" id="sk-tgl-selesai" class="fc"></div>
+</div>
+<div class="fg"><label class="fl">Keterangan (mis. Nomor Nota Tugas / Nomor SK Cuti)</label><input type="text" id="sk-ket" class="fc" placeholder="mis. Nota Tugas No. 800/123/2026 ke Dinas ..."></div>
+<div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px">
+<button class="btn btn-gold btn-sm" onclick="simpanStatusKhusus()">💾 Simpan Status</button>
+</div>
+<div style="font-weight:600;font-size:12.5px;color:var(--g500);margin-bottom:6px">ASN dengan status khusus saat ini:</div>
+<div id="sk-list"><div class="loading"><div class="spin"></div>Memuat...</div></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- MOBILE OVERLAY -->
+<div class="mob-overlay" id="mobOverlay" onclick="closeMobDrawer()"></div>
+<!-- BOTTOM NAVIGATION MOBILE -->
+<div class="bottom-nav" id="bottomNav">
+<button class="bn-item" onclick="navTo('dashboard')"><span class="bn-icon">📊</span>Dashboard</button>
+<button class="bn-item" onclick="navTo('apel-pagi')"><span class="bn-icon">🌅</span>Apel Pagi</button>
+<button class="bn-item" onclick="navTo('apel-sore')"><span class="bn-icon">🌇</span>Apel Sore</button>
+<button class="bn-item" onclick="navTo('monitoring-harian')"><span class="bn-icon">📡</span>Monitor</button>
+<button class="bn-item" onclick="toggleMobDrawer()"><span class="bn-icon">☰</span>Menu Lain</button>
+</div>
+<!-- KAMERA OVERLAY -->
+<div id="camOverlay">
+<div class="cam-top">
+<div class="cam-title">📷 <span id="camLabel">Kamera</span></div>
+<button class="cam-close" onclick="closeCamera()">✕</button>
+</div>
+<div class="cam-view">
+<video id="camVid" autoplay playsinline muted></video>
+<div class="cam-flash" id="camFlash"></div>
+<div class="cam-unavail" id="camUnavail">
+<div style="font-size:40px;opacity:.3">📷</div>
+<div style="font-size:13px;font-weight:600;color:rgba(255,255,255,.75)">Kamera tidak tersedia</div>
+<div id="camErrMsg" style="font-size:11.5px">Izinkan akses kamera di browser</div>
+<button class="btn btn-ghost btn-sm" onclick="retryCam()" style="margin-top:9px">🔄 Coba Lagi</button>
+</div>
+</div>
+<div class="cam-controls">
+<button class="cam-side" onclick="switchCam()">🔄</button>
+<button class="cam-snap" onclick="snapPhoto()" id="camSnap" disabled><div class="cam-snap-inner">📸</div></button>
+<button class="cam-side" onclick="triggerGallery()">🖼️</button>
+</div>
+</div>
+<!-- MODAL: PEGAWAI -->
+<div class="mo-overlay" id="moPeg">
+<div class="mo">
+<div class="mo-accent"></div>
+<div class="mo-hdr"><div class="mo-title" id="moPegTitle">Tambah Pegawai</div><button class="mo-x" onclick="closeMo('moPeg')">✕</button></div>
+<div class="mo-body">
+<input type="hidden" id="peg-id">
+<div class="fg"><label class="fl">Nama Lengkap *</label><input type="text" id="peg-nama" class="fc"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+<div class="fg"><label class="fl">NIP *</label><input type="text" id="peg-nip" class="fc"></div>
+<div class="fg"><label class="fl">Golongan</label><input type="text" id="peg-gol" class="fc"></div>
+</div>
+<div class="fg"><label class="fl">Unit Kerja *</label><input type="text" id="peg-unit" class="fc" list="unitDl"><datalist id="unitDl"></datalist></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+<div class="fg"><label class="fl">Jabatan</label><input type="text" id="peg-jabatan" class="fc"></div>
+<div class="fg"><label class="fl">Pangkat</label><input type="text" id="peg-pangkat" class="fc"></div>
+</div>
+<div class="fg"><label class="fl">Status</label><select id="peg-status" class="fc"><option value="AKTIF">Aktif</option><option value="NONAKTIF">Non-Aktif</option></select></div>
+</div>
+<div class="mo-foot">
+<button class="btn btn-ghost btn-sm" onclick="closeMo('moPeg')">Batal</button>
+<button class="btn btn-gold" onclick="savePeg()">💾 Simpan</button>
+</div>
+</div>
+</div>
+<!-- MODAL: JAM -->
+<div class="mo-overlay" id="moJam">
+<div class="mo">
+<div class="mo-accent"></div>
+<div class="mo-hdr"><div class="mo-title" id="moJamTitle">Edit Jam Apel</div><button class="mo-x" onclick="closeMo('moJam')">✕</button></div>
+<div class="mo-body">
+<input type="hidden" id="jam-tipe">
+<div class="fg"><label class="fl">Jam Pelaksanaan</label><input type="time" id="jam-inp" class="fc" style="font-size:20px;text-align:center;font-family:var(--mono)"></div>
+<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:5px">
+<button class="btn btn-ghost btn-sm" onclick="document.getElementById('jam-inp').value='07:00'">07:00</button>
+<button class="btn btn-ghost btn-sm" onclick="document.getElementById('jam-inp').value='07:30'">07:30</button>
+<button class="btn btn-ghost btn-sm" onclick="document.getElementById('jam-inp').value='08:00'">08:00</button>
+<button class="btn btn-ghost btn-sm" onclick="document.getElementById('jam-inp').value='16:00'">16:00</button>
+<button class="btn btn-ghost btn-sm" onclick="document.getElementById('jam-inp').value='16:30'">16:30</button>
+<button class="btn btn-ghost btn-sm" onclick="setJamNow()">🕐 Sekarang</button>
+</div>
+</div>
+<div class="mo-foot">
+<button class="btn btn-ghost btn-sm" onclick="closeMo('moJam')">Batal</button>
+<button class="btn btn-gold" onclick="saveJam()">✅ Simpan</button>
+</div>
+</div>
+</div>
+<!-- MODAL: LOKASI -->
+<div class="mo-overlay" id="moLokasi">
+<div class="mo">
+<div class="mo-accent"></div>
+<div class="mo-hdr"><div class="mo-title" id="moLokasiTitle">Edit Lokasi</div><button class="mo-x" onclick="closeMo('moLokasi')">✕</button></div>
+<div class="mo-body">
+<input type="hidden" id="lok-tipe">
+<div class="fg"><label class="fl">Nama / Alamat Lokasi</label><input type="text" id="lok-nama" class="fc"></div>
+<div id="lok-gps-st" style="font-size:11px;color:var(--g500);margin-top:4px"></div>
+<button class="btn btn-success btn-sm" onclick="getGPSModal()" style="margin-top:8px">🛰️ Ambil GPS</button>
+<div style="margin-top:12px">
+<div class="fl" style="margin-bottom:6px">Lokasi Tersimpan</div>
+<div id="savedLokWrap" style="display:flex;flex-wrap:wrap;gap:5px"></div>
+</div>
+</div>
+<div class="mo-foot">
+<button class="btn btn-ghost btn-sm" onclick="closeMo('moLokasi')">Batal</button>
+<button class="btn btn-gold" onclick="saveLokasi()">📍 Simpan</button>
+</div>
+</div>
+</div>
+<!-- MODAL: USER -->
+<div class="mo-overlay" id="moUser">
+<div class="mo">
+<div class="mo-accent"></div>
+<div class="mo-hdr"><div class="mo-title" id="moUserTitle">Tambah User</div><button class="mo-x" onclick="closeMo('moUser')">✕</button></div>
+<div class="mo-body">
+<div class="fg"><label class="fl">Username *</label><input type="text" id="usr-uname" class="fc"></div>
+<div class="fg"><label class="fl" id="usr-pw-lbl">Password * (min 6 karakter)</label><input type="password" id="usr-pw" class="fc" autocomplete="new-password"></div>
+<div class="fg"><label class="fl">Nama Lengkap *</label><input type="text" id="usr-nama" class="fc"></div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+<div class="fg"><label class="fl">Role</label><select id="usr-role" class="fc"><option value="ASN">ASN</option><option value="ADMIN">Admin</option><option value="PIMPINAN">Pimpinan</option></select></div>
+<div class="fg"><label class="fl">Status</label><select id="usr-status" class="fc"><option value="AKTIF">Aktif</option><option value="NONAKTIF">Non-Aktif</option></select></div>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:9px">
+<div class="fg"><label class="fl">NIP</label><input type="text" id="usr-nip" class="fc"></div>
+<div class="fg"><label class="fl">Unit Kerja</label><input type="text" id="usr-unit" class="fc"></div>
+</div>
+</div>
+<div class="mo-foot">
+<button class="btn btn-ghost btn-sm" onclick="closeMo('moUser')">Batal</button>
+<button class="btn btn-gold" onclick="saveUser()">💾 Simpan</button>
+</div>
+</div>
+</div>
+<!-- MODAL: LIHAT USER -->
+<div class="mo-overlay" id="moUserView">
+<div class="mo" style="max-width:460px">
+<div class="mo-accent"></div>
+<div class="mo-hdr"><div class="mo-title">Detail User</div><button class="mo-x" onclick="closeMo('moUserView')">✕</button></div>
+<div class="mo-body">
+<div class="uv-head"><div class="uv-ava" id="uv-ava">U</div><div><div class="uv-nm" id="uv-nama">—</div><div class="uv-un" id="uv-uname">—</div></div></div>
+<div class="uv-grid">
+<div class="uv-item"><div class="uv-l">Role</div><div class="uv-v" id="uv-role">—</div></div>
+<div class="uv-item"><div class="uv-l">Status</div><div class="uv-v" id="uv-status">—</div></div>
+<div class="uv-item"><div class="uv-l">NIP</div><div class="uv-v" id="uv-nip" style="font-family:var(--mono)">—</div></div>
+<div class="uv-item"><div class="uv-l">Unit Kerja</div><div class="uv-v" id="uv-unit">—</div></div>
+<div class="uv-item"><div class="uv-l">Dibuat</div><div class="uv-v" id="uv-created">—</div></div>
+<div class="uv-item"><div class="uv-l">Login Terakhir</div><div class="uv-v" id="uv-login">—</div></div>
+</div>
+</div>
+<div class="mo-foot">
+<button class="btn btn-ghost btn-sm" onclick="closeMo('moUserView')">Tutup</button>
+<button class="btn btn-gold btn-sm" onclick="editUserDariView()">✏️ Edit User</button>
+</div>
+</div>
+</div>
+<!-- MODAL: HAPUS USER -->
+<div class="mo-overlay" id="moUserDel">
+<div class="mo" style="max-width:400px">
+<div class="mo-accent" style="background:linear-gradient(90deg,#EF4444,#F97316)"></div>
+<div class="mo-body" style="text-align:center;padding-top:22px">
+<div class="ud-ico">🗑️</div>
+<div style="font-size:15px;font-weight:700;color:#0C1A35;margin-bottom:6px">Hapus user ini?</div>
+<div style="font-size:12.5px;color:#56739F;line-height:1.6"><b id="ud-nama" style="color:#0C1A35">—</b><br><span id="ud-uname" style="font-family:var(--mono);font-size:11.5px">—</span><br>Akun akan dihapus permanen dan tidak bisa login lagi. Tindakan ini tidak dapat dibatalkan.</div>
+</div>
+<div class="mo-foot" style="justify-content:center;padding-top:4px">
+<button class="btn btn-ghost" onclick="closeMo('moUserDel')">Batal</button>
+<button class="btn btn-danger-solid" id="ud-btn" onclick="doHapusUser()">Ya, Hapus</button>
+</div>
+</div>
+</div>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
